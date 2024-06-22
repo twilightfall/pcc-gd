@@ -11,7 +11,6 @@ namespace Scene1
 
         public UnityEvent onSelectedObjectChanged;
 
-        //[SerializeField]
         GameObject SelectedGameObject;
 
         private void Awake()
