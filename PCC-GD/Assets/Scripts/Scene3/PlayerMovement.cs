@@ -6,6 +6,8 @@ using UnityEngine.InputSystem.XR;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject _playerModel;
     private CharacterController _controller;
     private Vector3 _movementDir;
     private Vector3 _jumpVector;
@@ -15,12 +17,14 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     private float _movementSpeed;
+    private float _tempSpeed;
     [SerializeField]
     private float _jumpForce;
     [SerializeField]
     private float _rotSpeed;
 
     private int _jumpCount = 0;
+
     void Awake()
     {
         this._controller = GetComponent<CharacterController>();
@@ -60,20 +64,20 @@ public class PlayerMovement : MonoBehaviour
     }
     public void OnMove(InputAction.CallbackContext value)
     {
-        this._movementDir = new Vector3(value.ReadValue<Vector2>().x, 0f, value.ReadValue<Vector2>().y).normalized;
+        if (this._controller.isGrounded)
+        {
+            this._movementDir = new Vector3(value.ReadValue<Vector2>().x, 0f, value.ReadValue<Vector2>().y).normalized;
+        }
     }
 
     private void HandleMovement()
     {
-        if(this._controller.isGrounded)
-        { 
-            if (this._movementDir != Vector3.zero)
-            {
-                Quaternion targetRotation = Quaternion.LookRotation(this._movementDir);
-                this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, targetRotation, this._rotSpeed * Time.deltaTime);
-            }
-            this._controller.Move(this._movementDir * this._movementSpeed * Time.deltaTime);
+        if (this._movementDir != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(this._movementDir);
+            this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, targetRotation, this._rotSpeed * Time.deltaTime);
         }
+        this._controller.Move(this._movementDir * this._movementSpeed * Time.deltaTime);
     }
 
     public void OnJump(InputAction.CallbackContext value)
@@ -96,11 +100,35 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext value)
     {
+        float dashSpeed = this._movementSpeed * 2f;
+        this._tempSpeed = this._movementSpeed / 2f;
+
+        if(value.performed)
+        {
+            this._movementSpeed = dashSpeed;
+            Debug.Log("Dashing");
+            Debug.Log(this._movementSpeed);
+        }
+
+        if(value.canceled)
+        {
+            this._movementSpeed = this._tempSpeed;
+            Debug.Log("Default speed");
+            Debug.Log(this._movementSpeed);
+        }
 
     }
 
     public void OnCrouch(InputAction.CallbackContext value)
     {
+        if(value.performed)
+        {
+            this._playerModel.transform.localScale = new Vector3(1f, 0.5f, 1f);
+        }
 
+        if(value.canceled)
+        {
+            this._playerModel.transform.localScale = new Vector3(1f, 1f, 1f);
+        }
     }
 }
