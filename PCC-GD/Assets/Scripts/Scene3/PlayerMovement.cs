@@ -61,10 +61,15 @@ public class PlayerMovement : MonoBehaviour
             this._jumpVector.y += Physics.gravity.y * Time.deltaTime;
             this._controller.Move(this._jumpVector * Time.deltaTime);
         }
+
+        if(this._controller.isGrounded)
+        {
+            this._jumpCount = 0;
+        }
     }
     public void OnMove(InputAction.CallbackContext value)
     {
-        if (this._controller.isGrounded)
+        if(this._controller.isGrounded)
         {
             this._movementDir = new Vector3(value.ReadValue<Vector2>().x, 0f, value.ReadValue<Vector2>().y).normalized;
         }
@@ -72,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleMovement()
     {
-        if (this._movementDir != Vector3.zero)
+        if(this._movementDir != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(this._movementDir);
             this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, targetRotation, this._rotSpeed * Time.deltaTime);
