@@ -1,5 +1,5 @@
 {
-    "name": "New Controls",
+    "name": "PlayerNormal",
     "maps": [
         {
             "name": "Movement",
@@ -18,6 +18,24 @@
                     "name": "Jump",
                     "type": "Button",
                     "id": "8bdf6b23-d45f-45c5-bc4c-6bd9d957bfd2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Sprint",
+                    "type": "Button",
+                    "id": "f49e2ddd-9266-48ab-b528-ff782e0c739e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Crouch",
+                    "type": "Button",
+                    "id": "1c883bc8-0101-4d5c-aa35-caa3b897773c",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -88,6 +106,28 @@
                     "processors": "",
                     "groups": "PC",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7e422175-181f-491c-bf7a-3c77dbd4f334",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "87bc6833-df1f-457e-938b-863a97d1c6f7",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Crouch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
