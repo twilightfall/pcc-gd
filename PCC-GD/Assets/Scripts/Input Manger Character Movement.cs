@@ -1,85 +1,138 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.U2D;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+
+
+/// <summary>
+/// Controls:
+///  - Movement: WASD
+///  - Jump: Spacebar
+///  - Crouch: Left Shift
+///  - Dash: Left Ctrl
+/// </summary>
 
 public class InputMangerCharacterMovement : MonoBehaviour
 {
 
     float horizontal, vertical;
-    Vector3 moveVector = new();
+    Vector3 moveVector = new Vector3(0.0f, 0.0f, 0.0f);
+    Vector3 moveVector1 = new Vector3(0.0f, 0.0f, 0.0f);
     Vector3 moveDirection = new();
-
-    //Rigidbody rb;
-
-    bool isJumping;
 
     [SerializeField]
     private float movementSpeed;
 
     public InputActionReference move;
     public InputActionReference jumpy;
+    public InputActionReference crouch;
+    public InputActionReference dash;
 
     float jump;
     float secs;
-    float accel;
-    float v_y;
+    float height = 4;
+    bool crouched_switch = false;
+    bool grounded = false;
+    int jump2 = 0;
 
     [SerializeField]
     CharacterController controller;
-    // Start is called before the first frame update
+
     void Start()
     {
-        // rb = GetComponent<Rigidbody>();
-        movementSpeed = 10f;
+        movementSpeed = 5f;
+        transform.localScale = new Vector3(1f, height, 1f);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // horizontal = Input.GetAxis("Horizontal");
-        // vertical = Input.GetAxis("Vertical");
-        // jump = Input.GetAxis("Jump")*10 + Physics.gravity.y;
-
         moveDirection = new Vector3(move.action.ReadValue<Vector2>().x, 0.0f, move.action.ReadValue<Vector2>().y).normalized;
-
         secs = Time.deltaTime;
-        // jump = Input.GetAxis("Jump")*10 - (0.5f * 9.8f * secs * secs)*10;
 
         if (controller.isGrounded)
         {
-            horizontal = Input.GetAxis("Horizontal");
-            vertical = Input.GetAxis("Vertical");
-            jump = Input.GetAxis("Jump") * 0.5f;
-            moveVector = new(horizontal, jump, vertical);
-            moveVector = moveVector * movementSpeed * Time.deltaTime;
+            grounded = true;
+            jump2 = 0;
+        }
+
+        if (grounded)
+        {
+            if (crouched_switch)
+            {
+                grounded = false;
+                crouched_switch = false;
+                moveVector1 = new(horizontal * movementSpeed * Time.deltaTime, -height/4f, vertical * movementSpeed * Time.deltaTime);
+                controller.Move(moveVector1);
+            }
+            else
+            {
+                horizontal = move.action.ReadValue<Vector2>().x;
+                vertical = move.action.ReadValue<Vector2>().y;
+                moveDirection = new Vector3(horizontal, 0.0f, vertical).normalized;
+                moveVector = moveDirection * movementSpeed * Time.deltaTime;
+            }
+
         }
         else
         {
-            //v_y = v_y + Physics.gravity.y * secs;
             moveVector.y = moveVector.y + 0.5f * Physics.gravity.y * secs * secs;
             moveVector = new(horizontal * movementSpeed * Time.deltaTime, moveVector.y, vertical * movementSpeed * Time.deltaTime);
         }
-
-        // moveVector = new(horizontal * movementSpeed * Time.deltaTime, jump, vertical * movementSpeed * Time.deltaTime);
-
-        // transform.Translate(moveVector);
-        //controller.Move(moveVector);
-        controller.Move(moveDirection * movementSpeed * Time.deltaTime);
-
 
     }
 
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.performed) isJumping = true;
+        if (context.performed && jump2<2)
+        {
+            grounded = false;
+            jump = 10f;
+            moveVector = new(horizontal * movementSpeed * Time.deltaTime, jump * Time.deltaTime, vertical * movementSpeed * Time.deltaTime);
+            jump2 += 1;
+        }
+    }
+
+
+    public void Crouch(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            transform.localScale = new Vector3(1f, height/2, 1f);
+            grounded = false;
+            crouched_switch = true;
+        }
+        if (context.canceled)
+        {
+            transform.localScale = new Vector3(1f, height, 1f);
+            crouched_switch = false;
+            if (grounded)
+            {
+                moveVector1 = new(horizontal * movementSpeed * Time.deltaTime, height/4f, vertical * movementSpeed * Time.deltaTime);
+                controller.Move(moveVector1);
+            }
+        }
+    }
+
+    public void Dash(InputAction.CallbackContext context)
+    {
+        if (context.started && grounded)
+        {
+            movementSpeed *= 2;
+        }
+        if (context.canceled && grounded)
+        {
+            movementSpeed /= 2;
+        }
     }
 
     void FixedUpdate()
     {
-
-        // rb.AddForce(moveVector.normalized * movementSpeed * Time.deltaTime, ForceMode.Force);
+        controller.Move(moveVector);
     }
 }

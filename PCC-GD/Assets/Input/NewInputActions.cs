@@ -44,6 +44,24 @@ public partial class @NewInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Crouch"",
+                    ""type"": ""Button"",
+                    ""id"": ""482f7fc0-125f-4c37-b181-4df0d5469c71"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""4c7ff0e7-0f46-4d5b-a816-6a993f5e3641"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -112,6 +130,28 @@ public partial class @NewInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e4b6bfbf-7718-495d-9a5f-e4e95c150fef"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Crouch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""08e644a0-e863-431e-9317-9ebdf27340c0"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -122,6 +162,8 @@ public partial class @NewInputActions: IInputActionCollection2, IDisposable
         m_WASD = asset.FindActionMap("WASD", throwIfNotFound: true);
         m_WASD_Move = m_WASD.FindAction("Move", throwIfNotFound: true);
         m_WASD_Jump = m_WASD.FindAction("Jump", throwIfNotFound: true);
+        m_WASD_Crouch = m_WASD.FindAction("Crouch", throwIfNotFound: true);
+        m_WASD_Dash = m_WASD.FindAction("Dash", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -185,12 +227,16 @@ public partial class @NewInputActions: IInputActionCollection2, IDisposable
     private List<IWASDActions> m_WASDActionsCallbackInterfaces = new List<IWASDActions>();
     private readonly InputAction m_WASD_Move;
     private readonly InputAction m_WASD_Jump;
+    private readonly InputAction m_WASD_Crouch;
+    private readonly InputAction m_WASD_Dash;
     public struct WASDActions
     {
         private @NewInputActions m_Wrapper;
         public WASDActions(@NewInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_WASD_Move;
         public InputAction @Jump => m_Wrapper.m_WASD_Jump;
+        public InputAction @Crouch => m_Wrapper.m_WASD_Crouch;
+        public InputAction @Dash => m_Wrapper.m_WASD_Dash;
         public InputActionMap Get() { return m_Wrapper.m_WASD; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -206,6 +252,12 @@ public partial class @NewInputActions: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @Crouch.started += instance.OnCrouch;
+            @Crouch.performed += instance.OnCrouch;
+            @Crouch.canceled += instance.OnCrouch;
+            @Dash.started += instance.OnDash;
+            @Dash.performed += instance.OnDash;
+            @Dash.canceled += instance.OnDash;
         }
 
         private void UnregisterCallbacks(IWASDActions instance)
@@ -216,6 +268,12 @@ public partial class @NewInputActions: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @Crouch.started -= instance.OnCrouch;
+            @Crouch.performed -= instance.OnCrouch;
+            @Crouch.canceled -= instance.OnCrouch;
+            @Dash.started -= instance.OnDash;
+            @Dash.performed -= instance.OnDash;
+            @Dash.canceled -= instance.OnDash;
         }
 
         public void RemoveCallbacks(IWASDActions instance)
@@ -237,5 +295,7 @@ public partial class @NewInputActions: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnCrouch(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
     }
 }
