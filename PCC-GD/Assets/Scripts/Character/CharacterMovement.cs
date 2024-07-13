@@ -13,7 +13,7 @@ public class CharacterMovement : MonoBehaviour
     Vector3 jumpVector;
     public InputActionReference move;
     public InputActionReference jump;
-    bool isJumping;
+    bool  isJumping;
 
     public float mspd = 5f;
 

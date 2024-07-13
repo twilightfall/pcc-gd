@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InputManagerCharacterMovement : MonoBehaviour
 {
-    float horizontal, vertical, jump;
+    float horizontal, vertical, boost = 1, jumps = 0;
     Vector3 moveVector = new();
-    Vector3 jumpVector;
+    Vector3 jumpVector = new();
 
     [SerializeField]
     float mspd = 25f;
@@ -14,34 +15,31 @@ public class InputManagerCharacterMovement : MonoBehaviour
     [SerializeField]
     CharacterController controller;
 
-    bool isGrounded = true;
-    bool isJumping = false;
+    [SerializeField]
+    private GameObject me;
+
+    private Vector3 crouchScale = new Vector3(1f, 0.5f, 1f);
+    private Vector3 standScale = new Vector3(1f, 1f, 1f);
 
     // Update is called once per frame
     void Update()
     {
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
-        jump = Input.GetAxis("Jump");
+        // print(jump);
 
-        moveVector.Set(horizontal, jump, vertical);
+        moveVector.Set(horizontal, 0, vertical);
 
-        Jump();
+        gravity();
         Move();
+        // Debug.Log(jumps);
     }
 
-    private void Jump()
+    private void gravity()
     {
-        if(controller.isGrounded && !isJumping && jump > 0)
-        {
-            isJumping = true;
-            isGrounded = false;
-            jumpVector.y = jump * 3f;
-        }
-        else
-        {
-            isGrounded = true;
-            isJumping = false;
+        if (controller.isGrounded) {
+            jumps = 0;
+        } else {
             jumpVector.y += Physics.gravity.y * Time.deltaTime;
             controller.Move(jumpVector * Time.deltaTime);
         }
@@ -49,7 +47,41 @@ public class InputManagerCharacterMovement : MonoBehaviour
 
     private void Move()
     {
+        // print("hello"        );
         moveVector.y = jumpVector.y;
-        controller.Move(mspd * Time.deltaTime * moveVector);
+        controller.Move(mspd * Time.deltaTime * moveVector * boost);
     }
+
+
+    public void OnMove(InputAction.CallbackContext value){
+        print(":')");
+    }
+
+    public void OnCrouch(InputAction.CallbackContext context){
+        if(context.performed)
+            me.transform.localScale = crouchScale;
+        else if(context.canceled)
+            me.transform.localScale = standScale;
+    }
+
+
+    public void OnDash(InputAction.CallbackContext context){
+        if(context.performed)
+            boost = 2f;
+        else if(context.canceled)
+            boost = 1f;
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if (context.started && jumps < 2){
+            jumpVector.y = 3f; // Apply initial jump force
+            jumps++;
+        }
+    }
+
+
+
+
+
 }
