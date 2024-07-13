@@ -6,19 +6,14 @@ public class CollisionController : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
-
+        print(collision.gameObject.name);
         if (collision.gameObject.CompareTag("Player"))
         {
             print("You hit me! :(");
         }
-
-        collision.rigidbody.AddForce(Vector3.up * 10, ForceMode.Impulse);
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        
-    }
+
 
     private void OnCollisionStay(Collision collision)
     {
