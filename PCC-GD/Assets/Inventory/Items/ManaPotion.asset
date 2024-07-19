@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f581130407c0e6a40852f9602fea4286, type: 3}
+  m_Name: ManaPotion
+  m_EditorClassIdentifier: 
+  itemIcon: {fileID: 21300000, guid: 3bb9bef4fa3cb5041a88dd53d1339246, type: 3}
+  itemPrefab: {fileID: 2528851594948272080, guid: 5996e3dd03d54b740af015a484622d1c, type: 3}
+  type: 0
+  itemID: 0
+  stackable: 1
+  description: 
+  restoreHealthValue: 0
+  restoreStaminaValue: 20

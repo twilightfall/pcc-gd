@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
@@ -11,6 +12,7 @@ public class PlayerControllerNew : MonoBehaviour
     private Vector2 _input;
     CharacterController _characterController;
     CapsuleCollider _capsuleCollider;
+    public InventoryManager inventoryManager;
 
     public readonly float movementSpeed = 6f;
     public readonly float jumpSpeed = 6f;
@@ -133,7 +135,6 @@ public class PlayerControllerNew : MonoBehaviour
     private void ApplyRotation()
     {
         if (_input.sqrMagnitude == 0) return;
-        print(_input.sqrMagnitude);
 
         float targetAngle = Mathf.Atan2(_velocity.x, _velocity.z) * Mathf.Rad2Deg;
         angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _currentVelocity, 0.05f);
@@ -147,5 +148,24 @@ public class PlayerControllerNew : MonoBehaviour
     }
 
 
+    public void NumberPress(InputAction.CallbackContext context)
+    {
 
+        if (context.started)
+        {
+            int numberPressed = int.Parse(context.control.displayName);
+            inventoryManager.ChangeSelectSlot(numberPressed - 1);
+        }
+    }
+
+    public void DropItem(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            GameObject currentObject = inventoryManager.GetCurrentItem().itemPrefab;
+            Vector3 dropPosition = new Vector3(transform.position.x, 0f, transform.position.z+1);
+            Instantiate(currentObject, dropPosition, Quaternion.identity);
+            inventoryManager.RemoveItem();
+        }
+    }
 }
