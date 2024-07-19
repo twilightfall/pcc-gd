@@ -62,6 +62,42 @@ public partial class @NewInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cycle"",
+                    ""type"": ""Button"",
+                    ""id"": ""ab5985e9-1d4a-4abe-83de-8d33fd5f30f4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Use"",
+                    ""type"": ""Button"",
+                    ""id"": ""8401442a-67cb-4e04-8b29-e1cd97468d03"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Drop"",
+                    ""type"": ""Button"",
+                    ""id"": ""1416fde5-5898-46f8-bb55-80e60ea052cf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PIckup"",
+                    ""type"": ""Button"",
+                    ""id"": ""e80baf15-c784-4b26-9ee1-4c19af1352ba"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -152,6 +188,50 @@ public partial class @NewInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1164542f-2c1d-49db-a608-5cb4857e7a16"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cycle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9d3885e7-0553-4d19-acf7-73d982ea1a4d"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Use"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e633eb0e-6ec6-4e0f-acde-36df728aa8d2"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Drop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4bd21858-4fcb-41e2-856e-5b3cd4fcd177"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PIckup"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -164,6 +244,10 @@ public partial class @NewInputActions: IInputActionCollection2, IDisposable
         m_WASD_Jump = m_WASD.FindAction("Jump", throwIfNotFound: true);
         m_WASD_Crouch = m_WASD.FindAction("Crouch", throwIfNotFound: true);
         m_WASD_Dash = m_WASD.FindAction("Dash", throwIfNotFound: true);
+        m_WASD_Cycle = m_WASD.FindAction("Cycle", throwIfNotFound: true);
+        m_WASD_Use = m_WASD.FindAction("Use", throwIfNotFound: true);
+        m_WASD_Drop = m_WASD.FindAction("Drop", throwIfNotFound: true);
+        m_WASD_PIckup = m_WASD.FindAction("PIckup", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -229,6 +313,10 @@ public partial class @NewInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_WASD_Jump;
     private readonly InputAction m_WASD_Crouch;
     private readonly InputAction m_WASD_Dash;
+    private readonly InputAction m_WASD_Cycle;
+    private readonly InputAction m_WASD_Use;
+    private readonly InputAction m_WASD_Drop;
+    private readonly InputAction m_WASD_PIckup;
     public struct WASDActions
     {
         private @NewInputActions m_Wrapper;
@@ -237,6 +325,10 @@ public partial class @NewInputActions: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_WASD_Jump;
         public InputAction @Crouch => m_Wrapper.m_WASD_Crouch;
         public InputAction @Dash => m_Wrapper.m_WASD_Dash;
+        public InputAction @Cycle => m_Wrapper.m_WASD_Cycle;
+        public InputAction @Use => m_Wrapper.m_WASD_Use;
+        public InputAction @Drop => m_Wrapper.m_WASD_Drop;
+        public InputAction @PIckup => m_Wrapper.m_WASD_PIckup;
         public InputActionMap Get() { return m_Wrapper.m_WASD; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -258,6 +350,18 @@ public partial class @NewInputActions: IInputActionCollection2, IDisposable
             @Dash.started += instance.OnDash;
             @Dash.performed += instance.OnDash;
             @Dash.canceled += instance.OnDash;
+            @Cycle.started += instance.OnCycle;
+            @Cycle.performed += instance.OnCycle;
+            @Cycle.canceled += instance.OnCycle;
+            @Use.started += instance.OnUse;
+            @Use.performed += instance.OnUse;
+            @Use.canceled += instance.OnUse;
+            @Drop.started += instance.OnDrop;
+            @Drop.performed += instance.OnDrop;
+            @Drop.canceled += instance.OnDrop;
+            @PIckup.started += instance.OnPIckup;
+            @PIckup.performed += instance.OnPIckup;
+            @PIckup.canceled += instance.OnPIckup;
         }
 
         private void UnregisterCallbacks(IWASDActions instance)
@@ -274,6 +378,18 @@ public partial class @NewInputActions: IInputActionCollection2, IDisposable
             @Dash.started -= instance.OnDash;
             @Dash.performed -= instance.OnDash;
             @Dash.canceled -= instance.OnDash;
+            @Cycle.started -= instance.OnCycle;
+            @Cycle.performed -= instance.OnCycle;
+            @Cycle.canceled -= instance.OnCycle;
+            @Use.started -= instance.OnUse;
+            @Use.performed -= instance.OnUse;
+            @Use.canceled -= instance.OnUse;
+            @Drop.started -= instance.OnDrop;
+            @Drop.performed -= instance.OnDrop;
+            @Drop.canceled -= instance.OnDrop;
+            @PIckup.started -= instance.OnPIckup;
+            @PIckup.performed -= instance.OnPIckup;
+            @PIckup.canceled -= instance.OnPIckup;
         }
 
         public void RemoveCallbacks(IWASDActions instance)
@@ -297,5 +413,9 @@ public partial class @NewInputActions: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+        void OnCycle(InputAction.CallbackContext context);
+        void OnUse(InputAction.CallbackContext context);
+        void OnDrop(InputAction.CallbackContext context);
+        void OnPIckup(InputAction.CallbackContext context);
     }
 }
