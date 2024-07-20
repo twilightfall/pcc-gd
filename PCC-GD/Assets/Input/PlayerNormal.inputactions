@@ -2,7 +2,7 @@
     "name": "PlayerNormal",
     "maps": [
         {
-            "name": "Movement",
+            "name": "NormalPC",
             "id": "c8fbed4a-686a-44bd-a38f-56e165d3db6f",
             "actions": [
                 {
@@ -36,6 +36,15 @@
                     "name": "Crouch",
                     "type": "Button",
                     "id": "1c883bc8-0101-4d5c-aa35-caa3b897773c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PickUpItem",
+                    "type": "Button",
+                    "id": "95a61af3-3ca9-4117-8e80-64bb835b6ee8",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -128,6 +137,45 @@
                     "processors": "",
                     "groups": "PC",
                     "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3ee3bea5-33f4-4902-8845-f1f4ede3ccc6",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "PickUpItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "PickUpItem",
+            "id": "7996d6da-b620-4006-8947-5f1a3bcd2446",
+            "actions": [
+                {
+                    "name": "PickUpItem",
+                    "type": "Button",
+                    "id": "ea8d11d1-4b64-45ac-81e3-8492f6c85d9e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "77d16dec-3ac0-418b-b375-b69431816665",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "PickUpItem",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
