@@ -14,7 +14,6 @@ public class InputManagerCharacterMovement : MonoBehaviour
     [SerializeField]
     CharacterController controller;
 
-    bool isGrounded = true;
     bool isJumping = false;
 
     // Update is called once per frame
@@ -35,12 +34,10 @@ public class InputManagerCharacterMovement : MonoBehaviour
         if(controller.isGrounded && !isJumping && jump > 0)
         {
             isJumping = true;
-            isGrounded = false;
             jumpVector.y = jump * 3f;
         }
         else
         {
-            isGrounded = true;
             isJumping = false;
             jumpVector.y += Physics.gravity.y * Time.deltaTime;
             controller.Move(jumpVector * Time.deltaTime);

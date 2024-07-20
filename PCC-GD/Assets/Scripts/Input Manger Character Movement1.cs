@@ -14,8 +14,6 @@ public class InputMangerCharacterMovement1 : MonoBehaviour
 
     //Rigidbody rb;
 
-    bool isJumping;
-
     [SerializeField]
     private float movementSpeed;
 
@@ -80,7 +78,6 @@ public class InputMangerCharacterMovement1 : MonoBehaviour
     {
         if (context.performed)
         {
-            isJumping = true;
             print("true");
         }
     }

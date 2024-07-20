@@ -10,11 +10,8 @@ public class InputMangerCharacterMovementv2 : MonoBehaviour
 
     float horizontal, vertical;
     Vector3 moveVector = new();
-    Vector3 moveDirection = new();
 
     //Rigidbody rb;
-
-    bool isJumping;
 
     [SerializeField]
     private float movementSpeed;
@@ -24,10 +21,7 @@ public class InputMangerCharacterMovementv2 : MonoBehaviour
 
     float jump;
     float secs;
-    float accel;
-    float v_y;
     bool jump2 = false;
-    bool in_air = true;
     bool ground_touch = false;
     float accu_time = 0.0f;
     // bool count = true
@@ -103,7 +97,6 @@ public class InputMangerCharacterMovementv2 : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.performed) isJumping = true;
     }
 
     void FixedUpdate()
