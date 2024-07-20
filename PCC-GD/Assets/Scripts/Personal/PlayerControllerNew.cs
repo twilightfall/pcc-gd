@@ -168,4 +168,45 @@ public class PlayerControllerNew : MonoBehaviour
             inventoryManager.RemoveItem();
         }
     }
+
+
+    public void UseConsumable(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            ItemObject currentObject = inventoryManager.GetCurrentItem();
+            if (currentObject is FoodObject foodObject) 
+            {
+                int restoreHealthValue = foodObject.restoreHealthValue;
+                int restoreStaminaValue = foodObject.restoreStaminaValue;
+
+                PlayerManager.Instance.ChangeHealth(restoreHealthValue);
+                PlayerManager.Instance.ChangeStamina(restoreStaminaValue);
+
+                inventoryManager.RemoveItem();
+
+                Debug.Log($"Player Health: {PlayerManager.Instance.CurrentHealth}\tPlayer Stamina: {PlayerManager.Instance.CurrentStamina}");
+            }
+        }
+    }
+
+
+    public void MouseScroll(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            Vector2 scrollValue = context.ReadValue<Vector2>();
+
+            int increment = 0;
+            if (scrollValue.y > 0) increment = 1;
+            else increment = -1;
+
+            int newSlot = inventoryManager.selectedSlot + increment;
+
+            if (newSlot < 0) return;
+            if (newSlot > 6)  return;
+
+            inventoryManager.ChangeSelectSlot(newSlot);
+        }
+    }
 }
