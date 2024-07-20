@@ -11,39 +11,26 @@ public class PlayerManager : MonoBehaviour
     public int MaxStamina = 100;
     public int CurrentStamina = 100;
 
-    public List<GameObject> Inventory;
-
     public static PlayerManager Instance;
+
+    [SerializeField]
+    private Transform _itemDropPos;
+
     private void Awake()
     {
-        if(Instance != null)
+        if (Instance == null)
         {
-            Destroy(gameObject);
+            Instance = this;
         }
         else
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
+            Destroy(this.gameObject);
         }
     }
-    public void AddItem(GameObject item)
+
+    public Transform PlayerDropPosition()
     {
-        Inventory.Add(item);
+        return this._itemDropPos;
     }
 
-    public void DropItem(GameObject item)
-    {
-        Inventory.Remove(item);
-        Instantiate(item, this.transform);
-    }
-
-    public bool InventoryFull()
-    {
-        if(Inventory.Count == 5)
-        {
-            return true;
-        }
-
-        return false;
-    }
 }

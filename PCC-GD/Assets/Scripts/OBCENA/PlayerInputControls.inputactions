@@ -2,7 +2,7 @@
     "name": "PlayerInputControls",
     "maps": [
         {
-            "name": "Movement",
+            "name": "Player",
             "id": "d9c55267-0610-44c5-b316-134f2f5d9c29",
             "actions": [
                 {
@@ -36,6 +36,51 @@
                     "name": "Crouch",
                     "type": "Button",
                     "id": "14206827-838a-4c3e-941a-b21d4558ba87",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pickup",
+                    "type": "Button",
+                    "id": "98fa7ea5-6bb6-4100-bfb3-b174e858d6c0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Drop",
+                    "type": "Button",
+                    "id": "edf9009d-1eaa-4cb5-97b4-e8fa2f45c04f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Heal",
+                    "type": "Button",
+                    "id": "989bc0fd-f0f8-488d-9bf5-3a573a7a3214",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Speed Boost",
+                    "type": "Button",
+                    "id": "b323ba78-a19d-49a9-9536-cd707fbefa7b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Enlarge",
+                    "type": "Button",
+                    "id": "e469b499-299e-4f77-9497-3a3789e2de0b",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -130,38 +175,12 @@
                     "action": "Crouch",
                     "isComposite": false,
                     "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "Interact",
-            "id": "d30e1291-90d1-4c7c-9387-0d969310f072",
-            "actions": [
-                {
-                    "name": "Pickup",
-                    "type": "Button",
-                    "id": "5d436a5c-bfd3-4185-bcf1-3b7a0e696dd9",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 },
                 {
-                    "name": "Drop",
-                    "type": "Button",
-                    "id": "2eae6e34-7a4c-4ebb-9cf6-89be0551bf03",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
                     "name": "",
-                    "id": "5879580d-121c-43e6-a3cf-cf794836bfab",
+                    "id": "80ba6025-60d0-4a22-b504-9b69f96d5e5e",
                     "path": "<Keyboard>/e",
-                    "interactions": "",
+                    "interactions": "Tap",
                     "processors": "",
                     "groups": "",
                     "action": "Pickup",
@@ -170,7 +189,7 @@
                 },
                 {
                     "name": "",
-                    "id": "c150c29c-15fa-433a-8440-141aeef046e9",
+                    "id": "8ec753b0-039b-4b8d-9118-0464ccd35cea",
                     "path": "<Keyboard>/g",
                     "interactions": "",
                     "processors": "",
@@ -178,45 +197,10 @@
                     "action": "Drop",
                     "isComposite": false,
                     "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "Abilities",
-            "id": "c58e64d3-39b2-4f1a-b123-dcac172638c4",
-            "actions": [
-                {
-                    "name": "Heal",
-                    "type": "Button",
-                    "id": "59d43d0c-48bb-43bd-bda8-287ca5e41943",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 },
-                {
-                    "name": "Speed Boost",
-                    "type": "Button",
-                    "id": "2f013f6c-fa07-4549-a4c4-56ce6724c335",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Enlarge",
-                    "type": "Button",
-                    "id": "f0f4bba0-4936-41e5-b091-836de5e87ff0",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
                 {
                     "name": "",
-                    "id": "0098b752-3a54-478a-888f-90201020109f",
+                    "id": "2acd5403-9dbb-4f80-a4e0-33bbab91ae66",
                     "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
@@ -227,7 +211,7 @@
                 },
                 {
                     "name": "",
-                    "id": "91c1aeab-7ac0-45e9-923b-8f0e787bc4d1",
+                    "id": "1e74b99e-b27b-403b-8f97-2d7723063a4f",
                     "path": "<Keyboard>/2",
                     "interactions": "",
                     "processors": "",
@@ -238,7 +222,7 @@
                 },
                 {
                     "name": "",
-                    "id": "4774f2c4-8027-4907-bff3-6ef7a32dd70b",
+                    "id": "ed216196-f65f-4f6b-bbd2-5025140630a3",
                     "path": "<Keyboard>/3",
                     "interactions": "",
                     "processors": "",
@@ -248,6 +232,18 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Interact",
+            "id": "d30e1291-90d1-4c7c-9387-0d969310f072",
+            "actions": [],
+            "bindings": []
+        },
+        {
+            "name": "Abilities",
+            "id": "c58e64d3-39b2-4f1a-b123-dcac172638c4",
+            "actions": [],
+            "bindings": []
         }
     ],
     "controlSchemes": []

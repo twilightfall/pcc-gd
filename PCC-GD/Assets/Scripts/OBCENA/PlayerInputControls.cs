@@ -24,7 +24,7 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
     ""name"": ""PlayerInputControls"",
     ""maps"": [
         {
-            ""name"": ""Movement"",
+            ""name"": ""Player"",
             ""id"": ""d9c55267-0610-44c5-b316-134f2f5d9c29"",
             ""actions"": [
                 {
@@ -58,6 +58,51 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
                     ""name"": ""Crouch"",
                     ""type"": ""Button"",
                     ""id"": ""14206827-838a-4c3e-941a-b21d4558ba87"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pickup"",
+                    ""type"": ""Button"",
+                    ""id"": ""98fa7ea5-6bb6-4100-bfb3-b174e858d6c0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Drop"",
+                    ""type"": ""Button"",
+                    ""id"": ""edf9009d-1eaa-4cb5-97b4-e8fa2f45c04f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Heal"",
+                    ""type"": ""Button"",
+                    ""id"": ""989bc0fd-f0f8-488d-9bf5-3a573a7a3214"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Speed Boost"",
+                    ""type"": ""Button"",
+                    ""id"": ""b323ba78-a19d-49a9-9536-cd707fbefa7b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Enlarge"",
+                    ""type"": ""Button"",
+                    ""id"": ""e469b499-299e-4f77-9497-3a3789e2de0b"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -152,38 +197,12 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
                     ""action"": ""Crouch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""Interact"",
-            ""id"": ""d30e1291-90d1-4c7c-9387-0d969310f072"",
-            ""actions"": [
-                {
-                    ""name"": ""Pickup"",
-                    ""type"": ""Button"",
-                    ""id"": ""5d436a5c-bfd3-4185-bcf1-3b7a0e696dd9"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Drop"",
-                    ""type"": ""Button"",
-                    ""id"": ""2eae6e34-7a4c-4ebb-9cf6-89be0551bf03"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
                     ""name"": """",
-                    ""id"": ""5879580d-121c-43e6-a3cf-cf794836bfab"",
+                    ""id"": ""80ba6025-60d0-4a22-b504-9b69f96d5e5e"",
                     ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
+                    ""interactions"": ""Tap"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Pickup"",
@@ -192,7 +211,7 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""c150c29c-15fa-433a-8440-141aeef046e9"",
+                    ""id"": ""8ec753b0-039b-4b8d-9118-0464ccd35cea"",
                     ""path"": ""<Keyboard>/g"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -200,45 +219,10 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
                     ""action"": ""Drop"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""Abilities"",
-            ""id"": ""c58e64d3-39b2-4f1a-b123-dcac172638c4"",
-            ""actions"": [
-                {
-                    ""name"": ""Heal"",
-                    ""type"": ""Button"",
-                    ""id"": ""59d43d0c-48bb-43bd-bda8-287ca5e41943"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 },
-                {
-                    ""name"": ""Speed Boost"",
-                    ""type"": ""Button"",
-                    ""id"": ""2f013f6c-fa07-4549-a4c4-56ce6724c335"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Enlarge"",
-                    ""type"": ""Button"",
-                    ""id"": ""f0f4bba0-4936-41e5-b091-836de5e87ff0"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""0098b752-3a54-478a-888f-90201020109f"",
+                    ""id"": ""2acd5403-9dbb-4f80-a4e0-33bbab91ae66"",
                     ""path"": ""<Keyboard>/1"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -249,7 +233,7 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""91c1aeab-7ac0-45e9-923b-8f0e787bc4d1"",
+                    ""id"": ""1e74b99e-b27b-403b-8f97-2d7723063a4f"",
                     ""path"": ""<Keyboard>/2"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -260,7 +244,7 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""4774f2c4-8027-4907-bff3-6ef7a32dd70b"",
+                    ""id"": ""ed216196-f65f-4f6b-bbd2-5025140630a3"",
                     ""path"": ""<Keyboard>/3"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -270,25 +254,37 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Interact"",
+            ""id"": ""d30e1291-90d1-4c7c-9387-0d969310f072"",
+            ""actions"": [],
+            ""bindings"": []
+        },
+        {
+            ""name"": ""Abilities"",
+            ""id"": ""c58e64d3-39b2-4f1a-b123-dcac172638c4"",
+            ""actions"": [],
+            ""bindings"": []
         }
     ],
     ""controlSchemes"": []
 }");
-        // Movement
-        m_Movement = asset.FindActionMap("Movement", throwIfNotFound: true);
-        m_Movement_Move = m_Movement.FindAction("Move", throwIfNotFound: true);
-        m_Movement_Jump = m_Movement.FindAction("Jump", throwIfNotFound: true);
-        m_Movement_Dash = m_Movement.FindAction("Dash", throwIfNotFound: true);
-        m_Movement_Crouch = m_Movement.FindAction("Crouch", throwIfNotFound: true);
+        // Player
+        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
+        m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
+        m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
+        m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
+        m_Player_Pickup = m_Player.FindAction("Pickup", throwIfNotFound: true);
+        m_Player_Drop = m_Player.FindAction("Drop", throwIfNotFound: true);
+        m_Player_Heal = m_Player.FindAction("Heal", throwIfNotFound: true);
+        m_Player_SpeedBoost = m_Player.FindAction("Speed Boost", throwIfNotFound: true);
+        m_Player_Enlarge = m_Player.FindAction("Enlarge", throwIfNotFound: true);
         // Interact
         m_Interact = asset.FindActionMap("Interact", throwIfNotFound: true);
-        m_Interact_Pickup = m_Interact.FindAction("Pickup", throwIfNotFound: true);
-        m_Interact_Drop = m_Interact.FindAction("Drop", throwIfNotFound: true);
         // Abilities
         m_Abilities = asset.FindActionMap("Abilities", throwIfNotFound: true);
-        m_Abilities_Heal = m_Abilities.FindAction("Heal", throwIfNotFound: true);
-        m_Abilities_SpeedBoost = m_Abilities.FindAction("Speed Boost", throwIfNotFound: true);
-        m_Abilities_Enlarge = m_Abilities.FindAction("Enlarge", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -347,30 +343,40 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // Movement
-    private readonly InputActionMap m_Movement;
-    private List<IMovementActions> m_MovementActionsCallbackInterfaces = new List<IMovementActions>();
-    private readonly InputAction m_Movement_Move;
-    private readonly InputAction m_Movement_Jump;
-    private readonly InputAction m_Movement_Dash;
-    private readonly InputAction m_Movement_Crouch;
-    public struct MovementActions
+    // Player
+    private readonly InputActionMap m_Player;
+    private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
+    private readonly InputAction m_Player_Move;
+    private readonly InputAction m_Player_Jump;
+    private readonly InputAction m_Player_Dash;
+    private readonly InputAction m_Player_Crouch;
+    private readonly InputAction m_Player_Pickup;
+    private readonly InputAction m_Player_Drop;
+    private readonly InputAction m_Player_Heal;
+    private readonly InputAction m_Player_SpeedBoost;
+    private readonly InputAction m_Player_Enlarge;
+    public struct PlayerActions
     {
         private @PlayerInputControls m_Wrapper;
-        public MovementActions(@PlayerInputControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Move => m_Wrapper.m_Movement_Move;
-        public InputAction @Jump => m_Wrapper.m_Movement_Jump;
-        public InputAction @Dash => m_Wrapper.m_Movement_Dash;
-        public InputAction @Crouch => m_Wrapper.m_Movement_Crouch;
-        public InputActionMap Get() { return m_Wrapper.m_Movement; }
+        public PlayerActions(@PlayerInputControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_Player_Move;
+        public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        public InputAction @Dash => m_Wrapper.m_Player_Dash;
+        public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
+        public InputAction @Pickup => m_Wrapper.m_Player_Pickup;
+        public InputAction @Drop => m_Wrapper.m_Player_Drop;
+        public InputAction @Heal => m_Wrapper.m_Player_Heal;
+        public InputAction @SpeedBoost => m_Wrapper.m_Player_SpeedBoost;
+        public InputAction @Enlarge => m_Wrapper.m_Player_Enlarge;
+        public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(MovementActions set) { return set.Get(); }
-        public void AddCallbacks(IMovementActions instance)
+        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
+        public void AddCallbacks(IPlayerActions instance)
         {
-            if (instance == null || m_Wrapper.m_MovementActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_MovementActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_PlayerActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerActionsCallbackInterfaces.Add(instance);
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
@@ -383,9 +389,24 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
             @Crouch.started += instance.OnCrouch;
             @Crouch.performed += instance.OnCrouch;
             @Crouch.canceled += instance.OnCrouch;
+            @Pickup.started += instance.OnPickup;
+            @Pickup.performed += instance.OnPickup;
+            @Pickup.canceled += instance.OnPickup;
+            @Drop.started += instance.OnDrop;
+            @Drop.performed += instance.OnDrop;
+            @Drop.canceled += instance.OnDrop;
+            @Heal.started += instance.OnHeal;
+            @Heal.performed += instance.OnHeal;
+            @Heal.canceled += instance.OnHeal;
+            @SpeedBoost.started += instance.OnSpeedBoost;
+            @SpeedBoost.performed += instance.OnSpeedBoost;
+            @SpeedBoost.canceled += instance.OnSpeedBoost;
+            @Enlarge.started += instance.OnEnlarge;
+            @Enlarge.performed += instance.OnEnlarge;
+            @Enlarge.canceled += instance.OnEnlarge;
         }
 
-        private void UnregisterCallbacks(IMovementActions instance)
+        private void UnregisterCallbacks(IPlayerActions instance)
         {
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
@@ -399,35 +420,46 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
             @Crouch.started -= instance.OnCrouch;
             @Crouch.performed -= instance.OnCrouch;
             @Crouch.canceled -= instance.OnCrouch;
+            @Pickup.started -= instance.OnPickup;
+            @Pickup.performed -= instance.OnPickup;
+            @Pickup.canceled -= instance.OnPickup;
+            @Drop.started -= instance.OnDrop;
+            @Drop.performed -= instance.OnDrop;
+            @Drop.canceled -= instance.OnDrop;
+            @Heal.started -= instance.OnHeal;
+            @Heal.performed -= instance.OnHeal;
+            @Heal.canceled -= instance.OnHeal;
+            @SpeedBoost.started -= instance.OnSpeedBoost;
+            @SpeedBoost.performed -= instance.OnSpeedBoost;
+            @SpeedBoost.canceled -= instance.OnSpeedBoost;
+            @Enlarge.started -= instance.OnEnlarge;
+            @Enlarge.performed -= instance.OnEnlarge;
+            @Enlarge.canceled -= instance.OnEnlarge;
         }
 
-        public void RemoveCallbacks(IMovementActions instance)
+        public void RemoveCallbacks(IPlayerActions instance)
         {
-            if (m_Wrapper.m_MovementActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_PlayerActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
-        public void SetCallbacks(IMovementActions instance)
+        public void SetCallbacks(IPlayerActions instance)
         {
-            foreach (var item in m_Wrapper.m_MovementActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_PlayerActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_MovementActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_PlayerActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
-    public MovementActions @Movement => new MovementActions(this);
+    public PlayerActions @Player => new PlayerActions(this);
 
     // Interact
     private readonly InputActionMap m_Interact;
     private List<IInteractActions> m_InteractActionsCallbackInterfaces = new List<IInteractActions>();
-    private readonly InputAction m_Interact_Pickup;
-    private readonly InputAction m_Interact_Drop;
     public struct InteractActions
     {
         private @PlayerInputControls m_Wrapper;
         public InteractActions(@PlayerInputControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Pickup => m_Wrapper.m_Interact_Pickup;
-        public InputAction @Drop => m_Wrapper.m_Interact_Drop;
         public InputActionMap Get() { return m_Wrapper.m_Interact; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -437,22 +469,10 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_InteractActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_InteractActionsCallbackInterfaces.Add(instance);
-            @Pickup.started += instance.OnPickup;
-            @Pickup.performed += instance.OnPickup;
-            @Pickup.canceled += instance.OnPickup;
-            @Drop.started += instance.OnDrop;
-            @Drop.performed += instance.OnDrop;
-            @Drop.canceled += instance.OnDrop;
         }
 
         private void UnregisterCallbacks(IInteractActions instance)
         {
-            @Pickup.started -= instance.OnPickup;
-            @Pickup.performed -= instance.OnPickup;
-            @Pickup.canceled -= instance.OnPickup;
-            @Drop.started -= instance.OnDrop;
-            @Drop.performed -= instance.OnDrop;
-            @Drop.canceled -= instance.OnDrop;
         }
 
         public void RemoveCallbacks(IInteractActions instance)
@@ -474,16 +494,10 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
     // Abilities
     private readonly InputActionMap m_Abilities;
     private List<IAbilitiesActions> m_AbilitiesActionsCallbackInterfaces = new List<IAbilitiesActions>();
-    private readonly InputAction m_Abilities_Heal;
-    private readonly InputAction m_Abilities_SpeedBoost;
-    private readonly InputAction m_Abilities_Enlarge;
     public struct AbilitiesActions
     {
         private @PlayerInputControls m_Wrapper;
         public AbilitiesActions(@PlayerInputControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Heal => m_Wrapper.m_Abilities_Heal;
-        public InputAction @SpeedBoost => m_Wrapper.m_Abilities_SpeedBoost;
-        public InputAction @Enlarge => m_Wrapper.m_Abilities_Enlarge;
         public InputActionMap Get() { return m_Wrapper.m_Abilities; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -493,28 +507,10 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_AbilitiesActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_AbilitiesActionsCallbackInterfaces.Add(instance);
-            @Heal.started += instance.OnHeal;
-            @Heal.performed += instance.OnHeal;
-            @Heal.canceled += instance.OnHeal;
-            @SpeedBoost.started += instance.OnSpeedBoost;
-            @SpeedBoost.performed += instance.OnSpeedBoost;
-            @SpeedBoost.canceled += instance.OnSpeedBoost;
-            @Enlarge.started += instance.OnEnlarge;
-            @Enlarge.performed += instance.OnEnlarge;
-            @Enlarge.canceled += instance.OnEnlarge;
         }
 
         private void UnregisterCallbacks(IAbilitiesActions instance)
         {
-            @Heal.started -= instance.OnHeal;
-            @Heal.performed -= instance.OnHeal;
-            @Heal.canceled -= instance.OnHeal;
-            @SpeedBoost.started -= instance.OnSpeedBoost;
-            @SpeedBoost.performed -= instance.OnSpeedBoost;
-            @SpeedBoost.canceled -= instance.OnSpeedBoost;
-            @Enlarge.started -= instance.OnEnlarge;
-            @Enlarge.performed -= instance.OnEnlarge;
-            @Enlarge.canceled -= instance.OnEnlarge;
         }
 
         public void RemoveCallbacks(IAbilitiesActions instance)
@@ -532,22 +528,22 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
         }
     }
     public AbilitiesActions @Abilities => new AbilitiesActions(this);
-    public interface IMovementActions
+    public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
-    }
-    public interface IInteractActions
-    {
         void OnPickup(InputAction.CallbackContext context);
         void OnDrop(InputAction.CallbackContext context);
-    }
-    public interface IAbilitiesActions
-    {
         void OnHeal(InputAction.CallbackContext context);
         void OnSpeedBoost(InputAction.CallbackContext context);
         void OnEnlarge(InputAction.CallbackContext context);
+    }
+    public interface IInteractActions
+    {
+    }
+    public interface IAbilitiesActions
+    {
     }
 }

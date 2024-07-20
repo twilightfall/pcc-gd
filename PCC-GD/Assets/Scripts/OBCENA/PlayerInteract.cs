@@ -6,14 +6,14 @@ using UnityEngine.InputSystem.XR;
 
 public class PlayerInteract : MonoBehaviour
 {
-    private GameObject _item;
-    private bool _canInteract;
+    private ItemPickup _item;
+
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.tag);
         if(other.gameObject.CompareTag("Interactable"))
         {
-            this._canInteract = true;
-            this._item = other.gameObject;
+            this._item = other.GetComponent<ItemPickup>();
         }
     }
 
@@ -21,7 +21,7 @@ public class PlayerInteract : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Interactable"))
         {
-            this._canInteract = false;
+            this._item = null;
         }
     }
 
@@ -29,11 +29,9 @@ public class PlayerInteract : MonoBehaviour
     {
         if(value.performed)
         {
-            if(this._canInteract && !PlayerManager.Instance.InventoryFull()) 
+            if(this._item != null && !InventoryManager.Instance.InventoryFull())
             {
-                Debug.Log("OnInteract");
-                PlayerManager.Instance.AddItem(this._item);
-                Destroy(this._item);
+                this._item.Interact();
             }
         }
     }
@@ -42,7 +40,10 @@ public class PlayerInteract : MonoBehaviour
     {
         if(value.performed)
         {
-            PlayerManager.Instance.DropItem(this._item);
+            if(InventoryManager.Instance.Inventory.Count != 0)
+            {
+                InventoryManager.Instance.DropItem();
+            }
         }
     }
 }

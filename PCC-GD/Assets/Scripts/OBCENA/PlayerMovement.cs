@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
     
     private void RaycastGroundCheck()
     {
-        if (Physics.Raycast(transform.position, -transform.up, out RaycastHit hit, ((this._controller.height / 2) + 0.02f)))
+        if(Physics.Raycast(transform.position, -transform.up, out RaycastHit hit, ((this._controller.height / 2) + 0.02f)))
         {
             this._isGrounded = true;
         }
@@ -47,16 +47,18 @@ public class PlayerMovement : MonoBehaviour
             this._isGrounded = false;
         }
     }
+
     private void HandleGravity()
     {
-        if(this._isGrounded)
-        {
-            this._jumpCount = 0;
-        }
         if(!this._isJumping)
         {
             this._jumpVector.y += Physics.gravity.y * Time.deltaTime;
             this._controller.Move(this._jumpVector * Time.deltaTime);
+        }
+
+        if(this._isGrounded)
+        {
+            this._jumpCount = 0;
         }
     }
     public void OnMove(InputAction.CallbackContext value)
@@ -87,11 +89,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleJump()
     {
-        if(this._jumpCount != 2)
+        if(this._jumpCount < 1)
         {
-            this._jumpVector.y = Mathf.Sqrt(1f * -this._jumpForce * Physics.gravity.y);
             this._isGrounded = false;
             this._jumpCount++;
+            this._jumpVector.y = Mathf.Sqrt(1f * -this._jumpForce * Physics.gravity.y);
+            this._isJumping = false;
         }
     }
 
@@ -103,14 +106,12 @@ public class PlayerMovement : MonoBehaviour
         if(value.performed)
         {
             this._movementSpeed = dashSpeed;
-            Debug.Log("Dashing");
             Debug.Log(this._movementSpeed);
         }
 
         if(value.canceled)
         {
             this._movementSpeed = this._tempSpeed;
-            Debug.Log("Default speed");
             Debug.Log(this._movementSpeed);
         }
 
