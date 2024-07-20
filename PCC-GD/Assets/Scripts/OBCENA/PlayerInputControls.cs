@@ -31,7 +31,7 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
                     ""name"": ""Move"",
                     ""type"": ""PassThrough"",
                     ""id"": ""907909bd-19e7-4530-aeff-f140639450ba"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -213,7 +213,7 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""8ec753b0-039b-4b8d-9118-0464ccd35cea"",
                     ""path"": ""<Keyboard>/g"",
-                    ""interactions"": """",
+                    ""interactions"": ""Tap"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Drop"",
@@ -254,18 +254,6 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
-        },
-        {
-            ""name"": ""Interact"",
-            ""id"": ""d30e1291-90d1-4c7c-9387-0d969310f072"",
-            ""actions"": [],
-            ""bindings"": []
-        },
-        {
-            ""name"": ""Abilities"",
-            ""id"": ""c58e64d3-39b2-4f1a-b123-dcac172638c4"",
-            ""actions"": [],
-            ""bindings"": []
         }
     ],
     ""controlSchemes"": []
@@ -281,10 +269,6 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
         m_Player_Heal = m_Player.FindAction("Heal", throwIfNotFound: true);
         m_Player_SpeedBoost = m_Player.FindAction("Speed Boost", throwIfNotFound: true);
         m_Player_Enlarge = m_Player.FindAction("Enlarge", throwIfNotFound: true);
-        // Interact
-        m_Interact = asset.FindActionMap("Interact", throwIfNotFound: true);
-        // Abilities
-        m_Abilities = asset.FindActionMap("Abilities", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -452,82 +436,6 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
-
-    // Interact
-    private readonly InputActionMap m_Interact;
-    private List<IInteractActions> m_InteractActionsCallbackInterfaces = new List<IInteractActions>();
-    public struct InteractActions
-    {
-        private @PlayerInputControls m_Wrapper;
-        public InteractActions(@PlayerInputControls wrapper) { m_Wrapper = wrapper; }
-        public InputActionMap Get() { return m_Wrapper.m_Interact; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(InteractActions set) { return set.Get(); }
-        public void AddCallbacks(IInteractActions instance)
-        {
-            if (instance == null || m_Wrapper.m_InteractActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_InteractActionsCallbackInterfaces.Add(instance);
-        }
-
-        private void UnregisterCallbacks(IInteractActions instance)
-        {
-        }
-
-        public void RemoveCallbacks(IInteractActions instance)
-        {
-            if (m_Wrapper.m_InteractActionsCallbackInterfaces.Remove(instance))
-                UnregisterCallbacks(instance);
-        }
-
-        public void SetCallbacks(IInteractActions instance)
-        {
-            foreach (var item in m_Wrapper.m_InteractActionsCallbackInterfaces)
-                UnregisterCallbacks(item);
-            m_Wrapper.m_InteractActionsCallbackInterfaces.Clear();
-            AddCallbacks(instance);
-        }
-    }
-    public InteractActions @Interact => new InteractActions(this);
-
-    // Abilities
-    private readonly InputActionMap m_Abilities;
-    private List<IAbilitiesActions> m_AbilitiesActionsCallbackInterfaces = new List<IAbilitiesActions>();
-    public struct AbilitiesActions
-    {
-        private @PlayerInputControls m_Wrapper;
-        public AbilitiesActions(@PlayerInputControls wrapper) { m_Wrapper = wrapper; }
-        public InputActionMap Get() { return m_Wrapper.m_Abilities; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(AbilitiesActions set) { return set.Get(); }
-        public void AddCallbacks(IAbilitiesActions instance)
-        {
-            if (instance == null || m_Wrapper.m_AbilitiesActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_AbilitiesActionsCallbackInterfaces.Add(instance);
-        }
-
-        private void UnregisterCallbacks(IAbilitiesActions instance)
-        {
-        }
-
-        public void RemoveCallbacks(IAbilitiesActions instance)
-        {
-            if (m_Wrapper.m_AbilitiesActionsCallbackInterfaces.Remove(instance))
-                UnregisterCallbacks(instance);
-        }
-
-        public void SetCallbacks(IAbilitiesActions instance)
-        {
-            foreach (var item in m_Wrapper.m_AbilitiesActionsCallbackInterfaces)
-                UnregisterCallbacks(item);
-            m_Wrapper.m_AbilitiesActionsCallbackInterfaces.Clear();
-            AddCallbacks(instance);
-        }
-    }
-    public AbilitiesActions @Abilities => new AbilitiesActions(this);
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -539,11 +447,5 @@ public partial class @PlayerInputControls: IInputActionCollection2, IDisposable
         void OnHeal(InputAction.CallbackContext context);
         void OnSpeedBoost(InputAction.CallbackContext context);
         void OnEnlarge(InputAction.CallbackContext context);
-    }
-    public interface IInteractActions
-    {
-    }
-    public interface IAbilitiesActions
-    {
     }
 }

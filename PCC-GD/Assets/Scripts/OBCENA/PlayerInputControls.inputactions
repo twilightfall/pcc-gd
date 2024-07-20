@@ -9,7 +9,7 @@
                     "name": "Move",
                     "type": "PassThrough",
                     "id": "907909bd-19e7-4530-aeff-f140639450ba",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -191,7 +191,7 @@
                     "name": "",
                     "id": "8ec753b0-039b-4b8d-9118-0464ccd35cea",
                     "path": "<Keyboard>/g",
-                    "interactions": "",
+                    "interactions": "Tap",
                     "processors": "",
                     "groups": "",
                     "action": "Drop",
@@ -232,18 +232,6 @@
                     "isPartOfComposite": false
                 }
             ]
-        },
-        {
-            "name": "Interact",
-            "id": "d30e1291-90d1-4c7c-9387-0d969310f072",
-            "actions": [],
-            "bindings": []
-        },
-        {
-            "name": "Abilities",
-            "id": "c58e64d3-39b2-4f1a-b123-dcac172638c4",
-            "actions": [],
-            "bindings": []
         }
     ],
     "controlSchemes": []
