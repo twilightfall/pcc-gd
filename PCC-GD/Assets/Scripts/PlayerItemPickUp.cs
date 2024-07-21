@@ -26,32 +26,28 @@ public class PlayerItemPickUp : MonoBehaviour
 
     private void OnTriggerExit(Collider other){
         //check what items have left the trigger and remove them from the list.
-        if(other.tag == "Pickupable"){
+        if(other.CompareTag("Pickupable")){
             ItemsInRange.Remove(other.gameObject);
             //print(ItemsInRange);
         }
     }
 
+    /*
     private void OnTriggerStay(Collider other){
         //if(!other.gameObject.CompareTag("Player"))
             //print(other);
-    }
+    }*/
 
     public void CapturePickUpInput(InputAction.CallbackContext context){
-        //Collider[] thingsInRange = PickUpBounds.bounds.Contains;
         if(context.performed){
-            foreach(GameObject item in ItemsInRange){
+            /*foreach(GameObject item in ItemsInRange){
                 print(item.gameObject.name);
-            }
-            if(ItemsInRange[0]){
+            }*/
+            if(ItemsInRange.Count > 0){
                 ItemsInRange[0].SetActive(false);
                 PlayerInventoryController.AddItemToInventory(ItemsInRange[0]);
                 ItemsInRange.Remove(ItemsInRange[0]);
             }
         }
-    }
-
-    public void Update(){
-        //print(ItemsInRange);
     }
 }
