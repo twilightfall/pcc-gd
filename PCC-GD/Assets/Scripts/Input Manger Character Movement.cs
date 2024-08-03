@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEditor.U2D;
 using UnityEngine;
@@ -44,6 +46,10 @@ public class InputMangerCharacterMovement : MonoBehaviour
     CharacterController controller;
     float rotspd = 20f;
 
+    float x_rot = 0;
+    float z_rot = 0;
+    float rot = 0;
+
     void Start()
     {
         transform.localScale = new Vector3(1f, height, 1f);
@@ -59,6 +65,9 @@ public class InputMangerCharacterMovement : MonoBehaviour
 
     void Update()
     {
+        rot = transform.rotation.eulerAngles[1]; 
+        x_rot = math.sin(rot);
+        z_rot = math.cos(rot);
         moveDirection = new Vector3(move.action.ReadValue<Vector2>().x, 0.0f, move.action.ReadValue<Vector2>().y).normalized;
         secs = Time.deltaTime;
 

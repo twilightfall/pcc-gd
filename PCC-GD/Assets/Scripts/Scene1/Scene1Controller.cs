@@ -25,6 +25,7 @@ namespace Scene1
         [SerializeField] TMP_Text SwitcherText;
         [SerializeField] Button AdvButton;
         [SerializeField] Animator camAnimator;
+        public Animation ringAnimation;
 
         float posX, posY, posZ;
         float pitch = 0, yaw = 0, roll = 0;
@@ -39,6 +40,7 @@ namespace Scene1
         private void Awake()
         {
             SwitcherText.text = basic;
+            // ringAnimation.Play();
         }
 
         public void SetGameObject()
